@@ -158,10 +158,10 @@ sequenceDiagram
 
 ## 📚 Documentation & Resources
 
-### Technical Documentation
-- [Mathematical Details](docs/TECHNICAL.md)
-- [API Reference](docs/API.md)
-- [Risk Management](docs/RISK.md)
+### Technical Details
+- Mathematical Models: Kelly Criterion for position sizing, Value at Risk (VaR) calculations
+- API Integration: REST and WebSocket connections with rate limiting
+- Risk Management: Dynamic stop-loss calculation, exposure limits
 
 ### Security
 - API key encryption
@@ -170,7 +170,11 @@ sequenceDiagram
 - Error handling
 
 ### Contributing
-See [Contributing Guide](CONTRIBUTING.md) for guidelines.
+Contributions are welcome! Please ensure your pull requests:
+- Follow PEP 8 style guide
+- Include appropriate tests
+- Update documentation as needed
+- Respect the educational nature of the project
 
 ## 📄 License
 
