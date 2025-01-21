@@ -203,22 +203,36 @@ Example output:
 
 ## 📊 Market Metrics
 
-### Core Metrics
-| Metric | Description | Formula |
-|--------|-------------|---------|
-| Volatility | Price variation | σ = √(Σ(x-μ)²/n) |
-| ADR | Average Daily Return | ADR = Σ(daily returns)/n |
-| ROC | Rate of Change | ROC = (P₁-P₀)/P₀ × 100 |
-| VaR | Value at Risk | VaR = μ - (σ × z) |
-| Sharpe | Risk-adjusted return | S = (R - Rf)/σ |
-| Sortino | Downside risk-adjusted | S = (R - Rf)/σₘ |
+### Core Risk Metrics
 
-### Advanced Metrics
-- Calmar Ratio
-- Maximum Drawdown
-- Omega Ratio
-- Hurst Exponent
-- Fractal Dimension
+| Metric | Description | Formula | Economic Significance |
+|--------|-------------|---------|----------------------|
+| Historical Volatility | Annualized price variation | σ = √(Σ(ln(Pt/Pt-1) - μ)²/n) × √240 | Measures market uncertainty and risk using log returns, annualized for 240 trading days |
+| Sharpe Ratio | Risk-adjusted excess return | S = (R - Rf)/(σ × √252) | Evaluates excess return per unit of risk, annualized with daily risk-free rate |
+| Sortino Ratio | Downside risk-adjusted return | S = (R - Rf)/(σₘ × √252) | Similar to Sharpe but only penalizes downside volatility |
+| Value at Risk (VaR) | Potential loss threshold | 5th percentile of returns | Maximum loss with 95% confidence over the period |
+| Conditional VaR | Expected shortfall | E[R\|R < VaR] | Average loss when exceeding VaR, more tail-sensitive |
+
+### Advanced Risk-Return Metrics
+
+| Metric | Description | Formula | Economic Significance |
+|--------|-------------|---------|----------------------|
+| Maximum Drawdown | Largest peak-to-trough decline | max((peak - trough)/peak) | Worst historical loss from peak, key for risk management |
+| Calmar Ratio | Return to max drawdown | Annual Return/Max Drawdown | Measures recovery efficiency from worst losses |
+| Omega Ratio | Probability-weighted returns | E[R\|R>target]/\|E[R\|R<target]\| | Complete distribution analysis of returns vs target |
+| ROC | Rate of Change | (P₁-P₀)/P₀ × 100 | Price momentum indicator |
+| ADR | Average Daily Range | mean(daily high - daily low) | Intraday volatility measure |
+
+### Statistical Measures
+
+| Metric | Description | Implementation | Economic Significance |
+|--------|-------------|----------------|----------------------|
+| Hurst Exponent | Long-term dependency | Log-log regression of ranges | Measures market efficiency and trend strength |
+| Fractal Dimension | Price path complexity | Box-counting method | Indicates market complexity and trading opportunities |
+| Kurtosis | Return distribution shape | Fourth standardized moment | Measures tail risk and extreme events |
+| Skewness | Distribution asymmetry | Third standardized moment | Indicates return distribution bias |
+
+All metrics are implemented using standard financial mathematics principles and are calculated using high-frequency market data. The system uses proper annualization factors (240/252 trading days) and appropriate risk-free rate adjustments where applicable.
 
 ## 💻 Development
 
