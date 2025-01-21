@@ -32,69 +32,73 @@ By accessing this code, you acknowledge that:
 
 ---
 
-<div align="center">
-
-### 🌟 Quick Links
-
-[Features](#-features) • [Architecture](#%EF%B8%8F-system-architecture) • [Installation](#-installation) • [Usage](#-usage) • [Documentation](#-documentation) • [Contributing](#-contributing)
-
-</div>
-
----
-
-## 📋 Table of Contents
-
-- [Overview](#-overview)
-- [Features](#-features)
-- [System Architecture](#%EF%B8%8F-system-architecture)
-- [Installation](#-installation)
-- [Configuration](#%EF%B8%8F-configuration)
-- [Usage](#-usage)
-- [Market Metrics](#-market-metrics)
-- [Development](#-development)
-- [Performance](#-performance)
-- [Documentation](#-documentation)
-- [Security](#-security)
-- [Contributing](#-contributing)
-- [License](#-license)
-
 ## 🎯 Overview
 
-The Cryptocurrency Market Analysis System is an advanced tool designed to analyze cryptocurrency markets across multiple exchanges. It employs sophisticated algorithms to process market data, identify patterns, and generate comprehensive analysis reports.
-
-### 🎓 Educational Purpose
-
-This project serves as an educational resource demonstrating:
-- Advanced Python programming techniques
+The Cryptocurrency Market Analysis System demonstrates advanced Python programming techniques through market analysis algorithms. It serves as an educational resource for:
 - Asynchronous programming patterns
 - Real-time data processing
 - Market analysis algorithms
 - System architecture design
 
-## ✨ Features
+## 🚀 Quick Start
 
-### 🔄 Core Functionality
-- Multi-exchange data analysis
-- Real-time market monitoring
-- Advanced metric calculations
-- Pattern recognition
-- Historical data analysis
+```bash
+# Clone and setup
+git clone https://github.com/nadeko0/arbitrage_analysis.git
+cd arbitrage_analysis
 
-### 🚀 Technical Features
-- Asynchronous operations
+# Setup environment
+python -m venv venv
+source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+pip install -r requirements.txt
+
+# Run analysis
+python spread_process_third.py
+```
+
+Example output:
+```
+=== Arbitrage Opportunities ===
+Symbol     Buy        Sell       Volume     Cost      Revenue    Profit    %    R/R   Depth
+-----------------------------------------------------------------------------------------
+BNB3LUSDT  KuCoin     GateIo     296.18    150.30    187.54     37.24    24.78  12.58  814
+GLMRUSDT   KuCoin     HTX        401.65    150.30    180.57     30.27    20.14  10.25  1467
+```
+
+## 🔧 Configuration
+
+```python
+# config.py - Basic settings
+MIN_PROFIT_PERCENTAGE = 0.5  # Minimum profit target
+MAX_TRADE_VOLUME = 1000     # Maximum position size
+UPDATE_INTERVAL = 300       # Update frequency (seconds)
+
+# Advanced settings
+CACHE_EXPIRATION = 60      # Cache lifetime
+MAX_CONCURRENT_REQUESTS = 10
+REQUEST_TIMEOUT = 15
+```
+
+## 📊 Features
+
+### Analysis Capabilities
+- Multi-exchange monitoring
+- Real-time price spread detection
+- Market depth analysis
+- Historical volatility (240-day annualized)
+- Risk-adjusted metrics (Sharpe, Sortino, VaR)
+
+### Technical Features
+- Asynchronous processing
 - Smart caching system
-- Rate limiting
-- Error resilience
+- Rate limiting and error handling
 - Comprehensive logging
-- Performance optimization
 
-### 📊 Analysis Capabilities
-- Price spread analysis
-- Volatility calculations
-- Market depth evaluation
-- Statistical analysis
-- Pattern identification
-- Risk assessment
+### Risk Management
+- Kelly Criterion position sizing
+- Dynamic stop-loss calculation
+- Real-time risk monitoring
+- Multi-factor performance assessment
 
 ## 🏗️ System Architecture
 
@@ -118,7 +122,7 @@ graph TB
     end
 ```
 
-### 🔄 Data Flow
+### Data Flow
 ```mermaid
 sequenceDiagram
     participant E as Exchanges
@@ -133,243 +137,50 @@ sequenceDiagram
     A->>R: Analysis Results
 ```
 
-## 📦 Installation
-
-### Prerequisites
-```bash
-# Required system packages
-python 3.7+
-pip
-git
-```
-
-### Setup Process
-```bash
-# Clone repository
-git clone https://github.com/nadeko0/arbitrage_analysis.git
-cd arbitrage_analysis
-
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# On Windows:
-venv\Scripts\activate
-# On Unix or MacOS:
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-## ⚙️ Configuration
-
-### Basic Configuration
-```python
-# config.py
-MIN_PROFIT_PERCENTAGE = 0.5
-MAX_TRADE_VOLUME = 1000
-UPDATE_INTERVAL = 300
-```
-
-### Advanced Settings
-```python
-# Advanced configuration options
-CACHE_EXPIRATION = 60
-MAX_CONCURRENT_REQUESTS = 10
-REQUEST_TIMEOUT = 15
-```
-
-## 🚀 Usage
-
-```bash
-python spread_process_third.py
-```
-
-Example output:
-```
-=== Arbitrage Opportunities ===
-#   Symbol     Buy        Sell       Volume          Cost (USDT)          Revenue (USDT)       Profit (USDT)   Profit %   R/R Ratio  Market Depth
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-1   BNB3LUSDT  KuCoin     GateIo     296.18445378    150.30000000         187.54740710         37.24740710     24.78     % 12.58      814.77
-2   GLMRUSDT   KuCoin     HTX        401.65551392    150.30000000         180.57714627         30.27714627     20.14     % 10.25      1467.38
-3   GLMRUSDT   Bitget     HTX        401.28410915    150.30000000         180.41047808         30.11047808     20.03     % 10.20      1467.38
-4   GLMRUSDT   MEXC       HTX        401.28410915    150.30000000         180.41047808         30.11047808     20.03     % 10.20      1467.38
-5   KMDUSDT    HTX        Binance    336.89586428    150.30000000         179.90846132         29.60846132     19.70     % 10.03      457.08
-6   TRIBEUSDT  GateIo     MEXC       152.26551035    150.30000000         175.50231907         25.20231907     16.77     % 8.56       97.58
-7   SEALUSDT   GateIo     MEXC       298.56448708    150.30000000         159.55049648         9.25049648      6.15      % 3.24       11.64
-8   BLENDRUSDT GateIo     MEXC       238.25380967    150.30000000         151.73351945         1.43351945      0.95      % 0.63       287.32
-```
-
-## 📊 Market Metrics
-
-### Core Risk Metrics
-
-| Metric | Description | Formula | Economic Significance |
-|--------|-------------|---------|----------------------|
-| Historical Volatility | Annualized price variation | σ = √(Σ(ln(Pt/Pt-1) - μ)²/n) × √240 | Measures market uncertainty and risk using log returns, annualized for 240 trading days |
-| Sharpe Ratio | Risk-adjusted excess return | S = (R - Rf)/(σ × √252) | Evaluates excess return per unit of risk, annualized with daily risk-free rate |
-| Sortino Ratio | Downside risk-adjusted return | S = (R - Rf)/(σₘ × √252) | Similar to Sharpe but only penalizes downside volatility |
-| Value at Risk (VaR) | Potential loss threshold | 5th percentile of returns | Maximum loss with 95% confidence over the period |
-| Conditional VaR | Expected shortfall | E[R\|R < VaR] | Average loss when exceeding VaR, more tail-sensitive |
-
-### Advanced Risk-Return Metrics
-
-| Metric | Description | Formula | Economic Significance |
-|--------|-------------|---------|----------------------|
-| Maximum Drawdown | Largest peak-to-trough decline | max((peak - trough)/peak) | Worst historical loss from peak, key for risk management |
-| Calmar Ratio | Return to max drawdown | Annual Return/Max Drawdown | Measures recovery efficiency from worst losses |
-| Omega Ratio | Probability-weighted returns | E[R\|R>target]/\|E[R\|R<target]\| | Complete distribution analysis of returns vs target |
-| ROC | Rate of Change | (P₁-P₀)/P₀ × 100 | Price momentum indicator |
-| ADR | Average Daily Range | mean(daily high - daily low) | Intraday volatility measure |
-
-### Statistical Measures
-
-| Metric | Description | Implementation | Economic Significance |
-|--------|-------------|----------------|----------------------|
-| Hurst Exponent | Long-term dependency | Log-log regression of ranges | Measures market efficiency and trend strength |
-| Fractal Dimension | Price path complexity | Box-counting method | Indicates market complexity and trading opportunities |
-| Kurtosis | Return distribution shape | Fourth standardized moment | Measures tail risk and extreme events |
-| Skewness | Distribution asymmetry | Third standardized moment | Indicates return distribution bias |
-
-All metrics are implemented using standard financial mathematics principles and are calculated using high-frequency market data. The system uses proper annualization factors (240/252 trading days) and appropriate risk-free rate adjustments where applicable.
-
 ## 💻 Development
 
 ### Project Structure
 ```
 📦 arbitrage_analysis
- ┣ 📜 .env
- ┣ 📜 apis.py
- ┣ 📜 backtesting.py
- ┣ 📜 cache.py
- ┣ 📜 calculate_metrics.py
- ┣ 📜 collect_orderbooks.py
- ┣ 📜 config.py
- ┣ 📜 error_handling.py
- ┣ 📜 fetch_data.py
- ┣ 📜 find_common_coins.py
- ┣ 📜 get_trade_url.py
- ┣ 📜 logging_config.py
- ┣ 📜 risk_manager.py
- ┣ 📜 spread_process_first.py
- ┣ 📜 spread_process_second.py
- ┣ 📜 spread_process_third.py
- ┗ 📜 volatility.py
+ ┣ 📜 apis.py          - Exchange API integrations
+ ┣ 📜 cache.py         - Caching system
+ ┣ 📜 config.py        - Configuration settings
+ ┣ 📜 risk_manager.py  - Risk management logic
+ ┣ 📜 volatility.py    - Volatility calculations
+ ┗ 📜 spread_process_third.py  - Main analysis script
 ```
 
-### Code Style
-```python
-# Example of expected code style
-def calculate_metric(data: List[float], 
-                    window: int = 20) -> Dict[str, float]:
-    """
-    Calculate market metrics over specified window.
-    
-    Args:
-        data: Price data points
-        window: Calculation window
-        
-    Returns:
-        Dictionary of calculated metrics
-    """
-    results = {}
-    # Implementation
-    return results
-```
+### Performance
+- Data Collection: ~100ms/exchange
+- Analysis: ~50ms/symbol
+- Cache Hit Ratio: 95%
+- Memory Usage: <500MB
 
+## 📚 Documentation & Resources
 
+### Technical Documentation
+- [Mathematical Details](docs/TECHNICAL.md)
+- [API Reference](docs/API.md)
+- [Risk Management](docs/RISK.md)
 
-## 📈 Performance
-
-### Optimization Techniques
-- Async I/O operations
-- Data caching
-- Request batching
-- Connection pooling
-- Memory management
-
-### Benchmarks
-```
-Data Collection: ~100ms/exchange
-Analysis: ~50ms/symbol
-Cache Hit Ratio: 95%
-Memory Usage: <500MB
-```
-
-## 📝 Documentation
-
-### API Documentation
-```python
-class MarketAnalyzer:
-    """
-    Main market analysis class.
-    
-    Attributes:
-        exchanges (List[str]): Connected exchanges
-        metrics (Dict[str, float]): Calculated metrics
-    """
-    
-    def analyze(self, symbol: str) -> Dict[str, Any]:
-        """
-        Perform full market analysis.
-        
-        Args:
-            symbol: Trading pair symbol
-            
-        Returns:
-            Analysis results
-        """
-        pass
-```
-
-## 🛡️ Security
-
-### Best Practices
+### Security
 - API key encryption
 - Rate limiting
 - Input validation
 - Error handling
-- Secure logging
 
-### Security Measures
-```python
-# Example of secure API key handling
-from cryptography.fernet import Fernet
-key = Fernet.generate_key()
-cipher_suite = Fernet(key)
-encrypted_api_key = cipher_suite.encrypt(api_key.encode())
-```
-
-## 🤝 Contributing
-
-### Getting Started
-1. Fork the repository
-2. Create feature branch
-3. Commit changes
-4. Push to branch
-5. Open pull request
-
-### Contribution Guidelines
-- Follow PEP 8 style guide
-- Add type hints
-- Write unit tests
-- Update documentation
-- Keep it focused
+### Contributing
+See [Contributing Guide](CONTRIBUTING.md) for guidelines.
 
 ## 📄 License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE)
 
 ---
 
 <div align="center">
 
-### 🌟 Star us on GitHub
-
-If you find this project useful, please consider giving it a star!
-
-### 📬 Contact
+### ⭐ Star us on GitHub!
 
 [Create Issue](https://github.com/nadeko0/arbitrage_analysis/issues) • [Send PR](https://github.com/nadeko0/arbitrage_analysis/pulls)
 
