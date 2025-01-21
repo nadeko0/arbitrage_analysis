@@ -5,10 +5,9 @@
 [![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-PEP8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
-[![Async](https://img.shields.io/badge/async-aiohttp-blue.svg)](https://docs.aiohttp.org/)
-[![Documentation](https://img.shields.io/badge/docs-comprehensive-brightgreen.svg)](README.md)
+[![HTTP Client](https://img.shields.io/badge/http%20client-aiohttp-blue.svg)](https://docs.aiohttp.org/)
 
-> A sophisticated Python-based cryptocurrency market analysis system that leverages advanced algorithms and real-time data processing to identify market patterns across multiple exchanges.
+> A Python-based cryptocurrency market analysis system that analyzes price differences across multiple exchanges to identify potential arbitrage opportunities.
 
 ## ⚠️ IMPORTANT DISCLAIMER
 
@@ -82,59 +81,50 @@ REQUEST_TIMEOUT = 15
 ## 📊 Features
 
 ### Analysis Capabilities
-- Multi-exchange monitoring
-- Real-time price spread detection
-- Market depth analysis
-- Historical volatility (240-day annualized)
-- Risk-adjusted metrics (Sharpe, Sortino, VaR)
+- Multi-exchange monitoring (8 major exchanges)
+- Price spread detection and analysis
+- Historical volatility (10-day, 240 hourly candles)
+- Risk metrics calculation (Sharpe, Sortino, VaR, etc.)
 
 ### Technical Features
-- Asynchronous processing
-- Smart caching system
+- Asynchronous HTTP requests with aiohttp
+- Basic caching with expiration
 - Rate limiting and error handling
-- Comprehensive logging
+- Structured logging with rotation
 
 ### Risk Management
-- Kelly Criterion position sizing
-- Dynamic stop-loss calculation
-- Real-time risk monitoring
-- Multi-factor performance assessment
+- Multiple risk metrics calculation
+- Configurable risk thresholds
+- Performance metrics assessment
 
 ## 🏗️ System Architecture
 
 ### Component Diagram
 ```mermaid
 graph TB
-    A[Exchange APIs] --> B[Data Collection Layer]
-    B --> C[Cache System]
-    C --> D[Analysis Engine]
-    D --> E[Results Processor]
+    A[Exchange APIs] --> B[Data Collection]
+    B --> C[Common Coins Detection]
+    C --> D[Spread Analysis]
+    D --> E[Risk Validation]
+    E --> F[Results]
     
-    F[Error Handler] --> B & C & D & E
     G[Logger] --> B & C & D & E
-    H[Metrics Calculator] --> D
-    I[Risk Manager] --> D
-    
-    subgraph "Analysis Pipeline"
-        D
-        H
-        I
-    end
+    H[Cache] --> B
+    I[Volatility] --> E
 ```
 
 ### Data Flow
 ```mermaid
 sequenceDiagram
     participant E as Exchanges
-    participant C as Collector
-    participant P as Processor
-    participant A as Analyzer
-    participant R as Results
+    participant D as Data Collector
+    participant S as Spread Analyzer
+    participant R as Risk Validator
     
-    E->>C: Market Data
-    C->>P: Raw Data
-    P->>A: Processed Data
-    A->>R: Analysis Results
+    E->>D: Fetch Price Data
+    D->>S: Process Spreads
+    S->>R: Validate Risk Metrics
+    R->>R: Filter Results
 ```
 
 ## 💻 Development
@@ -142,32 +132,31 @@ sequenceDiagram
 ### Project Structure
 ```
 📦 arbitrage_analysis
- ┣ 📜 apis.py          - Exchange API integrations
- ┣ 📜 cache.py         - Caching system
- ┣ 📜 config.py        - Configuration settings
- ┣ 📜 risk_manager.py  - Risk management logic
- ┣ 📜 volatility.py    - Volatility calculations
- ┗ 📜 spread_process_third.py  - Main analysis script
+ ┣ 📜 apis.py                    - Exchange API integrations
+ ┣ 📜 cache.py                   - Caching system
+ ┣ 📜 calculate_metrics.py       - Risk metrics calculations
+ ┣ 📜 config.py                  - Configuration settings
+ ┣ 📜 find_common_coins.py       - Common symbol detection
+ ┣ 📜 logging_config.py          - Logging configuration
+ ┣ 📜 risk_manager.py            - Risk management logic
+ ┣ 📜 spread_process_first.py    - Initial spread analysis
+ ┣ 📜 spread_process_second.py   - Risk validation
+ ┣ 📜 spread_process_third.py    - Final analysis
+ ┗ 📜 volatility.py              - Volatility calculations
 ```
-
-### Performance
-- Data Collection: ~100ms/exchange
-- Analysis: ~50ms/symbol
-- Cache Hit Ratio: 95%
-- Memory Usage: <500MB
 
 ## 📚 Documentation & Resources
 
 ### Technical Details
-- Mathematical Models: Kelly Criterion for position sizing, Value at Risk (VaR) calculations
-- API Integration: REST and WebSocket connections with rate limiting
-- Risk Management: Dynamic stop-loss calculation, exposure limits
+- Risk Metrics: Value at Risk (VaR), Sharpe ratio, Sortino ratio calculations
+- API Integration: REST API connections with rate limiting and error handling
+- Risk Management: Configurable thresholds and exposure limits
 
 ### Security
-- API key encryption
-- Rate limiting
-- Input validation
-- Error handling
+- API key configuration
+- Request rate limiting
+- Basic input validation
+- Error handling with logging
 
 ### Contributing
 Contributions are welcome! Please ensure your pull requests:
