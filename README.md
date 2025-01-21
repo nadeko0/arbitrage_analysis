@@ -50,16 +50,12 @@ By accessing this code, you acknowledge that:
 - [Installation](#-installation)
 - [Configuration](#%EF%B8%8F-configuration)
 - [Usage](#-usage)
-- [Analysis Pipeline](#-analysis-pipeline)
 - [Market Metrics](#-market-metrics)
-- [Exchange Integration](#-exchange-integration)
-- [Performance Optimization](#-performance-optimization)
-- [Error Handling](#-error-handling)
-- [Logging System](#-logging-system)
 - [Development](#-development)
-- [Testing](#-testing)
-- [Contributing](#-contributing)
+- [Performance](#-performance)
+- [Documentation](#-documentation)
 - [Security](#-security)
+- [Contributing](#-contributing)
 - [License](#-license)
 
 ## 🎯 Overview
@@ -186,27 +182,23 @@ REQUEST_TIMEOUT = 15
 
 ## 🚀 Usage
 
-### Basic Analysis
-```python
-# Run initial analysis
-python spread_process_first.py
-
-# Run advanced analysis
-python spread_process_second.py
-
-# Generate final results
+```bash
 python spread_process_third.py
 ```
 
-### Advanced Usage
-```python
-# Enable debug logging
-import logging
-logging.getLogger().setLevel(logging.DEBUG)
-
-# Custom metric calculation
-from calculate_metrics import calculate_all_metrics
-metrics = calculate_all_metrics(price_data)
+Example output:
+```
+=== Arbitrage Opportunities ===
+#   Symbol     Buy        Sell       Volume          Cost (USDT)          Revenue (USDT)       Profit (USDT)   Profit %   R/R Ratio  Market Depth
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+1   BNB3LUSDT  KuCoin     GateIo     296.18445378    150.30000000         187.54740710         37.24740710     24.78     % 12.58      814.77
+2   GLMRUSDT   KuCoin     HTX        401.65551392    150.30000000         180.57714627         30.27714627     20.14     % 10.25      1467.38
+3   GLMRUSDT   Bitget     HTX        401.28410915    150.30000000         180.41047808         30.11047808     20.03     % 10.20      1467.38
+4   GLMRUSDT   MEXC       HTX        401.28410915    150.30000000         180.41047808         30.11047808     20.03     % 10.20      1467.38
+5   KMDUSDT    HTX        Binance    336.89586428    150.30000000         179.90846132         29.60846132     19.70     % 10.03      457.08
+6   TRIBEUSDT  GateIo     MEXC       152.26551035    150.30000000         175.50231907         25.20231907     16.77     % 8.56       97.58
+7   SEALUSDT   GateIo     MEXC       298.56448708    150.30000000         159.55049648         9.25049648      6.15      % 3.24       11.64
+8   BLENDRUSDT GateIo     MEXC       238.25380967    150.30000000         151.73351945         1.43351945      0.95      % 0.63       287.32
 ```
 
 ## 📊 Market Metrics
@@ -272,26 +264,7 @@ def calculate_metric(data: List[float],
     return results
 ```
 
-## 🧪 Testing
 
-### Running Tests
-```bash
-# Run all tests
-python -m pytest
-
-# Run specific test file
-python -m pytest tests/test_analysis.py
-
-# Run with coverage
-python -m pytest --cov=src
-```
-
-### Test Categories
-- Unit Tests
-- Integration Tests
-- Performance Tests
-- Edge Cases
-- Error Handling
 
 ## 📈 Performance
 
