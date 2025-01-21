@@ -8,11 +8,25 @@
 [![Async](https://img.shields.io/badge/async-aiohttp-blue.svg)](https://docs.aiohttp.org/)
 [![Documentation](https://img.shields.io/badge/docs-comprehensive-brightgreen.svg)](README.md)
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/your-username/your-repo/raw/main/docs/logo.png" alt="Project Logo" width="200"/>
-</p>
-
 > A sophisticated Python-based cryptocurrency market analysis system that leverages advanced algorithms and real-time data processing to identify market patterns across multiple exchanges.
+
+## ⚠️ IMPORTANT DISCLAIMER
+
+**THIS IS STRICTLY AN EDUCATIONAL PROJECT - NOT FOR REAL TRADING**
+
+This project is:
+- A programming exercise to demonstrate Python development concepts
+- NOT designed or intended for actual trading
+- STRICTLY PROHIBITED from being used for real cryptocurrency trading
+- Created solely for educational and learning purposes
+- Not providing any financial advice or trading recommendations
+
+By accessing this code, you acknowledge that:
+- This is purely educational material
+- No financial advice is being provided
+- The creator assumes no responsibility for any use of this code
+- Any attempt to use this for real trading is strictly prohibited
+- All risks associated with cryptocurrency trading are yours alone
 
 </div>
 
@@ -136,8 +150,8 @@ git
 ### Setup Process
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/crypto-analysis.git
-cd crypto-analysis
+git clone https://github.com/nadeko0/arbitrage_analysis.git
+cd arbitrage_analysis
 
 # Create virtual environment
 python -m venv venv
@@ -218,27 +232,24 @@ metrics = calculate_all_metrics(price_data)
 
 ### Project Structure
 ```
-📦 crypto-analysis
- ┣ 📂 src
- ┃ ┣ 📂 analysis
- ┃ ┃ ┣ 📜 spread_process_first.py
- ┃ ┃ ┣ 📜 spread_process_second.py
- ┃ ┃ ┗ 📜 spread_process_third.py
- ┃ ┣ 📂 core
- ┃ ┃ ┣ 📜 config.py
- ┃ ┃ ┣ 📜 cache.py
- ┃ ┃ ┗ 📜 error_handling.py
- ┃ ┣ 📂 data
- ┃ ┃ ┣ 📜 fetch_data.py
- ┃ ┃ ┗ 📜 process_data.py
- ┃ ┗ 📂 utils
- ┃   ┣ 📜 logging_config.py
- ┃   ┗ 📜 helpers.py
- ┣ 📂 tests
- ┣ 📂 docs
- ┣ 📜 README.md
- ┣ 📜 requirements.txt
- ┗ 📜 setup.py
+📦 arbitrage_analysis
+ ┣ 📜 .env
+ ┣ 📜 apis.py
+ ┣ 📜 backtesting.py
+ ┣ 📜 cache.py
+ ┣ 📜 calculate_metrics.py
+ ┣ 📜 collect_orderbooks.py
+ ┣ 📜 config.py
+ ┣ 📜 error_handling.py
+ ┣ 📜 fetch_data.py
+ ┣ 📜 find_common_coins.py
+ ┣ 📜 get_trade_url.py
+ ┣ 📜 logging_config.py
+ ┣ 📜 risk_manager.py
+ ┣ 📜 spread_process_first.py
+ ┣ 📜 spread_process_second.py
+ ┣ 📜 spread_process_third.py
+ ┗ 📜 volatility.py
 ```
 
 ### Code Style
@@ -373,7 +384,7 @@ If you find this project useful, please consider giving it a star!
 
 ### 📬 Contact
 
-[Create Issue](https://github.com/yourusername/crypto-analysis/issues) • [Send PR](https://github.com/yourusername/crypto-analysis/pulls)
+[Create Issue](https://github.com/nadeko0/arbitrage_analysis/issues) • [Send PR](https://github.com/nadeko0/arbitrage_analysis/pulls)
 
 <br>
 
